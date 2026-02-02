@@ -1,59 +1,15 @@
-Advanced Multivariate Time Series Forecasting
+Advanced Time Series Forecasting
+Evidence-Based Comparison: Transformer vs LSTM vs SARIMA
+ Project Description
+This project presents an end-to-end, evidence-based implementation of advanced time series forecasting techniques.
+A synthetic multivariate time series dataset is generated and used to benchmark:
+Transformer (Attention-based Deep Learning)
+LSTM (Recurrent Neural Network baseline)
+SARIMA (Statistical baseline)
+The project emphasizes reproducibility, transparency, and quantitative evaluation, with saved datasets, plots, and metrics.
+ Repository Structure
+Copy code
 
-Evidence-based implementation of Transformer, LSTM, and SARIMA models for multivariate time series forecasting.
-This project generates a synthetic multivariate dataset, trains deep learning and classical models, and benchmarks their forecasting performance using real metrics and visualizations.
- Project Overview
-
-This repository demonstrates:
-
-Synthetic multivariate time series generation
-
-End-to-end forecasting pipeline
-
-Comparison of:
-
-🔹 Transformer (Multi-Head Attention)
-
-🔹 LSTM baseline
-
-🔹 SARIMA (classical statistical model)
-
-Quantitative evaluation using RMSE and MAE
-
-Saved datasets, metrics, plots, and attention visualizations for reproducibility
-
- Models Implemented
-1. Transformer
-
-Multi-Head Self-Attention
-
-Layer Normalization
-
-Global Average Pooling
-
-Dense prediction head
-
-Optimized with Huber loss
-
-2. LSTM Baseline
-
-Single LSTM layer
-
-Dense multi-step output
-
-Same loss and evaluation for fair comparison
-
-3. SARIMA
-
-Seasonal ARIMA with:
-
-Trend
-
-Seasonal periodicity
-
-Used as a classical statistical benchmark
-
- Project Structure
 .
 ├── data/
 │   └── generated_multivariate_timeseries.csv
@@ -65,93 +21,94 @@ Used as a classical statistical benchmark
 │       ├── forecast_comparison.png
 │       └── attention_weights.png
 │
-├── final2.py
+├── main.py   # Full implementation script
 └── README.md
-
- Dataset
-
-2000 time steps
-
-3 correlated time series
-
-Components:
-
-Linear trend
-
-Multiple seasonal patterns
-
-Gaussian noise
-
-Automatically saved to:
+ Dataset Details
+Type: Synthetic multivariate time series
+Total samples: 2000 time steps
+Variables:
+Series1: Linear trend + seasonal pattern + noise
+Series2: Correlated with Series1 + additional seasonality
+Series3: Combination of Series1 and Series2 + noise
+ Dataset is automatically saved for evidence:
+Copy code
 
 data/generated_multivariate_timeseries.csv
-
- Forecasting Setup
-
+ Methodology
+1️ Data Generation
+Controlled trend and multiple seasonal cycles
+Gaussian noise injection
+Cross-series dependency to simulate real-world behavior
+2️ Preprocessing
+Standardization using StandardScaler
+Sliding window sequence creation:
 Input window: 100 time steps
-
 Forecast horizon: 24 steps
-
-Target: Series1
-
-Train/Test split: 80% / 20%
-
-Scaling: StandardScaler (inverse-transformed for evaluation)
-
+Train–test split: 80% / 20%
+ Models Implemented
+ Transformer Model
+Multi-Head Self-Attention
+Residual connection + Layer Normalization
+Global Average Pooling
+Dense layers for multi-step forecasting
+Loss: Huber (robust to outliers)
+ LSTM Baseline
+Single LSTM layer
+Dense output for direct multi-horizon prediction
+ SARIMA Baseline
+Univariate SARIMA on Series1
+Seasonal order aligned with known periodicity
+Used as a classical statistical benchmark
  Evaluation Metrics
-
-Models are evaluated on inverse-scaled data using:
-
+All models are evaluated using real multi-step forecasts:
 RMSE (Root Mean Squared Error)
-
 MAE (Mean Absolute Error)
-
-Final Benchmark Results
-Transformer RMSE: 8.173, MAE: 6.970
-LSTM RMSE       : 3.738, MAE: 3.045
-SARIMA RMSE     : 51.480, MAE: 44.257
-
-
-Results are saved to:
+Metrics are saved for verification:
+Copy code
 
 results/metrics.csv
-
- Visualizations
-
-Generated automatically during execution:
-
+ Visual Outputs (Evidence)
+Generated and saved automatically:
 Raw multivariate time series
-
-Forecast comparison (first test window)
-
-Temporal attention strength from Transformer
-
-Saved under:
+Forecast comparison (Actual vs Transformer vs LSTM vs SARIMA)
+Temporal attention strength visualization
+ Stored in:
+Copy code
 
 results/plots/
-
- How to Run
-1. Install Dependencies
+ Attention Analysis
+The Transformer’s attention mechanism is analyzed by extracting temporal attention strength, highlighting which time steps contribute most to predictions.
+This improves model interpretability, a key requirement in modern ML systems.
+ How to Run the Project
+1️ Install Dependencies
+Copy code
+Bash
 pip install numpy pandas matplotlib scikit-learn tensorflow statsmodels
-
-2. Run the Script
-python final2.py
-
-
+2️ Execute the Script
+Copy code
+Bash
+python main.py
 All datasets, metrics, and plots will be generated automatically.
-
-🔬 Key Takeaways
-
-Deep learning models significantly outperform SARIMA on this dataset
-
-LSTM performs best numerically, while Transformer provides:
-
-Better interpretability via attention
-
-Strong multi-step forecasting capability
-
-The pipeline is fully reproducible and evidence-backed
-
-📜 License
-
-This project is provided for educational and research purposes.
+ Outputs Generated
+✔ Synthetic dataset (CSV)
+✔ Trained Transformer, LSTM, and SARIMA models
+✔ Benchmark metrics (RMSE, MAE)
+✔ Forecast comparison plots
+✔ Attention visualization
+No manual intervention required.
+ Key Highlights
+Evidence-based benchmarking
+Deep learning vs classical methods
+Reproducible experimental pipeline
+Explainable attention analysis
+Submission-ready artifacts
+ Use Cases
+Academic mini / major projects
+Time series research benchmarking
+Deep learning model comparison
+Internship / portfolio submissions
+                                                                                                                                                                                                                     Author
+Melvin raj
+Multivariate Time Series Forecasting Project
+ Conclusion
+This repository demonstrates a robust and transparent time series forecasting workflow, combining modern deep learning techniques with classical statistical models, supported by real metrics and saved evidence.
